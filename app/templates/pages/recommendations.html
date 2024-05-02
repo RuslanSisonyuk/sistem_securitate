@@ -1,0 +1,85 @@
+{% extends "layouts/layout.html" %}
+
+{% block content %}
+<div class="content-body">
+    <br>
+    <div class="row">
+
+        <div class="container-fluid">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="summernote">
+                            <h5> Your score is {{percentage}} %.
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if not policies%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="summernote">
+                            <a href="/"><h3>Congratulations!</h3></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="inline-editor">
+                            Your company..........
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- #/ container -->
+
+    {% else %}
+
+
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="summernote">
+                            <a href="/"><h3>Recommendations</h3></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="inline-editor">
+                            <ul class="list-icons">
+                                {% for item in policies %}
+                                <li style="font-size: 18px;"><i class="fa fa-check text-success"></i> {{item}}</li>
+                                <br>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+
+
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
