@@ -1,8 +1,7 @@
-from app.core.repository import Repository, Model
+from app.core.repository import Repository
 
 Product = dict
 
 
-@Model(Product)
 class ProductRepository(Repository):
     pass

@@ -2,18 +2,23 @@ import logging
 import os
 from functools import lru_cache
 
-from pydantic.v1 import BaseSettings
+from pydantic import Field, computed_field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    LOG_LEVEL: str | int = os.getenv("LOG_LEVEL", logging.INFO)
-    DB_HOST: str = os.getenv("DB_HOST", "")
-    DB_PORT: int = int(os.getenv("DB_PORT", 5432))
-    DB_NAME: str = os.getenv("DB_NAME", "")
-    DB_USER: str = os.getenv("DB_USER", "")
-    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "")
+    LOG_LEVEL: str | int = Field(default=logging.INFO)
+    DB_HOST: str
+    DB_PORT: int
+    DB_NAME: str
+    DB_USER: str
+    DB_PASSWORD: str
 
-    DB_URL: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    @computed_field
+    def DB_URL(self) -> str:
+        return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+
+    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8')
 
 
 @lru_cache
