@@ -12,7 +12,6 @@ from app.core.models import BaseModel
 from app.core.settings import get_settings
 from app.models.question import Question
 # this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
 config = context.config
 
 # Interpret the config file for Python logging.

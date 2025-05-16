@@ -26,3 +26,4 @@ class PoliciesService:
             "policies": policies,
             "percentage": 100 - 100 * len(policies) / len(questions)
         }
+    #

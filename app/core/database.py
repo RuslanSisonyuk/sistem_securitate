@@ -5,7 +5,7 @@ from sqlmodel import SQLModel, create_engine
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 SETTINGS = get_settings()
-
+#
 engine = AsyncEngine(
     create_engine(
         SETTINGS.DB_URL,
